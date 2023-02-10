@@ -33,6 +33,7 @@ import java.io.InputStreamReader;
 
 public class BsvTxOperations {
 
+    Ecc eccVar = new Ecc();
 
     //String urlBaseTXID = "https://api.whatsonchain.com/v1/bsv/main/tx/" + TXID +  "/hex";
     String urlBaseTXID = "";
@@ -236,12 +237,21 @@ public class BsvTxOperations {
         //timer.purge();
         //timer = new Timer();
 
-//        urlBaseTXID = "https://api.whatsonchain.com/v1/bsv/main/tx/" + TXID1 +  "/hex";
 
-        urlBaseTXID = "https://api.bitails.net/download/tx/" + TXID1;
+        ///////////////////////////////////////////////////////////////////////////
+        //DEFINICAO DA URL DA API de Download da RAW TX
+        ///////////////////////////////////////////////////////////////////////////
 
-        //timer.schedule(new TimeCheckURL(), 0, 5000);
-        //threadEndReadHexBsvTx = false;
+        //Para Usar a API da WoC:
+        //urlBaseTXID = "https://api.whatsonchain.com/v1/bsv/main/tx/" + TXID +  "/hex";
+        urlBaseTXID = "https://api.whatsonchain.com/v1/bsv/main/tx/" + TXID1 +  "/hex";
+
+
+        //Para Usar a API da Bitails:
+        //urlBaseTXID = "https://api.bitails.net/download/tx/" + TXID1;
+
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
 
 
         //timer.schedule(new TimeCheckURL(), dalyWhatsOnChain, 5000);
@@ -517,6 +527,7 @@ public class BsvTxOperations {
     }
 
 
+
     //private static String JsonTaskTXIDNew(String theUrl) {
     private String JsonTaskTXIDNew(String theUrl) {
         StringBuilder content = new StringBuilder();
@@ -535,7 +546,6 @@ public class BsvTxOperations {
         }
         return content.toString();
     }
-
 
     ////////////////////////////////////////////////////////////
     //https://stackoverflow.com/questions/2295221/java-net-url-read-stream-to-byte
@@ -3393,6 +3403,23 @@ public class BsvTxOperations {
             BigInteger[] sigECD = new BigInteger[2];
             sigECD[0] = signature[0];
             sigECD[1] = signature[1];
+
+            //////////////////////////////////////////////////////////
+            // Escolhe o S mais curto
+            // Para evitar a maleabilidade e fazer o algo ser um pouco mais rápido
+            // https://www.derpturkey.com/inherent-malleability-of-ecdsa-signatures/
+            //////////////////////////////////////////////////////////
+
+
+            BigInteger sInv = eccVar.n_order.subtract(sigECD[1]); // sInv = n - s
+
+            if(sInv.compareTo(sigECD[1]) == -1) {
+                sigECD[1] = sInv;
+            }
+
+            //////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
+
 
             Keygen pubKey = new Keygen();
             //Assinatura no formato DER + FORKID

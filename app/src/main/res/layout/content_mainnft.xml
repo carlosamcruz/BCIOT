@@ -85,7 +85,7 @@
             android:layout_width="362dp"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="BSV Address:"
+            android:text="Bitcoin Address:"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +120,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/buttonMS6"
 
+            android:background="#CCF8EB"
+            android:textColor="@android:color/black"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.792"
@@ -136,6 +139,10 @@
             app:layout_constraintVertical_bias="0.315"/>
     <Button
             android:text="BLUETOOTH"
+
+            android:background="#C5D6F6"
+            android:textColor="@android:color/black"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/buttonMS13"
             app:layout_constraintTop_toTopOf="parent"
