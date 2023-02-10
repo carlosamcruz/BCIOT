@@ -7,24 +7,20 @@ public class Variables {
     static String MainPaymail = "";
     static Boolean MyNFTs = false;
     static int TotalList = 0;
-    static String MBDATA = "";
-    static int operation = 0;
-    static String SatBalance = "";
-    static int STREAMTT = 0;
 
-    static Boolean threadM = false;
+    static String SatBalance = "";
+
     static String LastTxHexData = "";
     static String Arduino = "";
     static Boolean CompPKey = false;
     static int PoolID = 0;
-    static int ErroPreImagem = 0; //0 sem erro;
+
     static int TokenType = 0;
-    //static String ScriptADD= "";
+
     static String ArduinoBSVAdd = "";
     static String ArduinoLastTX = "ABC";
     static String[] txIDVector = new String[1000];
-    //static Boolean txSent = false;
-    static String txPrevious = "";
+
     static String resultArduino = "";
 
     static String txBitaisl = "";
@@ -33,10 +29,8 @@ public class Variables {
 
     static int ntries = 0;
 
-    //Old Dust Limite = "0.00000546"
-    static String BSVDustLimit = "0.00000135"; //it has changed to 136 on 10/25/2021
-    //Old Dust Limite = 546
-    static long BSVDustLimitLong = 135;
+    //static long BSVDustLimitLong = 135;
+    static long BSVDustLimitLong = 1;
     static int progressBar = 0;
     static String BSVWallet = "";
     static String LastTXID = "";
